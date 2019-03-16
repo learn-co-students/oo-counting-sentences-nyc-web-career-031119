@@ -3,23 +3,18 @@ class String
   def sentence?
     self.end_with?(".")
   end
-
   def question?
     self.end_with?("?")
   end
-
   def exclamation?
     self.end_with?("!")
   end
-
   def count_sentences
-    self.split(/\.|\?|\!/).delete_if {|w| w.size < 2}.size
+    self.gsub(/[a-zA-Z0-9,]/, '').squeeze.split.size   
   end
+
 end
 
-phrase = String.new("Hi, my name is Sophie.")
+t = String.new("This, well, is a sentence. This is too!! And so is this, I think? Woo...")
 
-puts phrase.sentence?
-puts phrase.question?
-puts phrase.exclamation?
-puts phrase.count_sentences
+p t.count_sentences
